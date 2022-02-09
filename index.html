@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content=""><!--add text here-->
+    <title>Pixabay Image Search</title><!--change text-->
+    <!--<link rel="stylesheet" href="stylesheet.css">-->
+    <!--<script src="script.js"></script>-->
+</head>
+<body>
+    <h1>Pixabay Image Search</h1>
+    <form id="search-box">
+        <input type="text" placeholder="Search For Photos"> 
+        <select name="color" id="color">
+            <option value="color">Any Color</option>
+            <option value="color">Grayscale</option>
+            <option value="color">Transparent</option>
+            <option value="color">Red</option>
+            <option value="color">Orange</option>
+            <option value="color">Yellow</option>
+            <option value="color">Green</option>
+            <option value="color">Turquoise</option>
+            <option value="color">Blue</option>
+            <option value="color">Lilac</option>
+            <option value="color">Pink</option>
+            <option value="color">White</option>
+            <option value="color">Gray</option>
+            <option value="color">Black</option>
+            <option value="color">Brown</option>
+        </select>
+        <button id="search-button" type="submit">Search</button>
+    </form>
+    <div id="gallery-box">
+        <div id="photo-box"></div>
+        <div id="text-under-pic">
+            <h3></h3><!--tags-->
+            <p></p><!--photographer-->
+        </div>
+    </div>
+    <div class="page-buttons">
+        <button id="previous-page">Previous Page</button> 
+        <button id="next-page">Next Page</button>     
+    </div>
+    <footer></footer>      
+</body>
+</html>
