@@ -7,13 +7,15 @@
     <meta name="description" content=""><!--add text here-->
     <title>Pixabay Image Search</title><!--change text-->
     <link rel="stylesheet" href="stylesheet.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <!--<script src="script.js"></script>-->
 </head>
 <body>
     <h1 span class="header">Pixabay Image Search</h1>
-    <form id="search-box">
-        <input type="text" placeholder="Search For Photos"> 
-        <select name="color" id="color">
+    <form span class=searchbar id="search-box">
+        <input class="searchbar_input" type="text" placeholder="Search For Photos"> 
+        <select class="searchbar_choice" name="color" id="color">
             <option value="color">Any Color</option>
             <option value="color">Grayscale</option>
             <option value="color">Transparent</option>
@@ -30,7 +32,9 @@
             <option value="color">Black</option>
             <option value="color">Brown</option>
         </select>
-        <button id="search-button" type="submit">Search</button>
+        <button class="searchbar__button" type="submit">
+            <i class="material-icons">image_search</i>
+        </button>
     </form>
     <div id="gallery-box">
         <div id="photo-box"></div>
