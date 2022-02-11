@@ -7,12 +7,12 @@
     <meta name="description" content=""><!--add text here-->
     <title>Pixabay Image Search</title><!--change text-->
     <!--<link rel="stylesheet" href="stylesheet.css">-->
-    <!--<script src="script.js"></script>-->
+    <script src="script.js" defer></script>
 </head>
 <body>
     <h1>Pixabay Image Search</h1>
     <form id="search-box">
-        <input type="text" placeholder="Search For Photos"> 
+        <input type="text" id="text-search" placeholder="Search For Photos"> 
         <select name="color" id="color">
             <option value="color">Any Color</option>
             <option value="color">Grayscale</option>
@@ -30,14 +30,17 @@
             <option value="color">Black</option>
             <option value="color">Brown</option>
         </select>
-        <button id="search-button" type="submit">Search</button>
+        <button id="search-button" type="button">Search</button>
     </form>
     <div id="gallery-box">
-        <div id="photo-box"></div>
-        <div id="text-under-pic">
-            <h3></h3><!--tags-->
-            <p></p><!--photographer-->
-        </div>
+        <div id="photo-box">
+            <img src="" alt="">
+            <ul id="text-under-pic">
+                <li>
+                    <p></p><!--tags-->
+                    <p></p><!--photographer-->
+                </li>
+            </div>     
     </div>
     <div class="page-buttons">
         <button id="previous-page">Previous Page</button> 
