@@ -30,12 +30,28 @@ async function getDataFromPixabay(searchInput, page, color){
             colors: color,
             page: page,
             per_page: 10,
+            hits: []
         }
     );    
-    const data = await fetch(pixabayPath + params.toString()); 
-    const response = await data.json();   //convert the response to json 
-    console.log(response); //comment out this later
-    return response;
-    };
+    let data = await fetch(pixabayPath + params.toString()); 
+    let response = await data.json();   //convert the response to json
 
-getDataFromPixabay(searchInput, page, color); //test fix this later
+    console.log(response); //comment out this later
+    let pixList = document.querySelector(".pix-list");
+    for (let i = 0; i < response.hits.length; i++) {
+        let imgUrl = response.hits[i].largeImageURL;
+        let img = document.createElement('img');
+        img.src = imgUrl;
+        let tag = response.hits[i].tags;
+        let tagp = document.createElement('p');
+        tagp.textContent = tag;
+        let photographer = response.hits[i].user;
+        let user = document.createElement('p');
+        user.textContent = photographer;
+        pixList.appendChild(img);
+        pixList.appendChild(tagp);
+        pixList.appendChild(user);
+    };
+}
+
+getDataFromPixabay(searchInput, color); //test fix this later
