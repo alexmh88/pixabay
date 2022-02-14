@@ -1,16 +1,16 @@
-.header{
+header{
     text-align: center;
     color: rgb(179, 89, 89);
 }
 
-.searchbar{
+.search-box{
     position: relative;
     display: inline-flex;
     width: 100%;
     max-width: 200px;
 }
 
-.searchbar_input{
+.text-search{
     flex-grow: 1;
     padding: 10px;
     outline: none;
@@ -20,12 +20,12 @@
     transition: background 0.25s, box-shadow 25s;
 }
 
-.searchbar_input:focus{
+.text-search:focus{
     background: white;
     box-shadow: 0 0 2px rgb(189, 133, 139);
 }
 
-.searchbar_choice{
+.color{
     flex-grow: 1;
     padding: 10px;
     outline: none;
@@ -35,7 +35,7 @@
     transition: background 0.25s, box-shadow 25s;
 }
 
-.searchbar_button{
+.search-button{
     width: 40px;
     background: rgb(179, 89, 89);
     color: white;
@@ -52,4 +52,5 @@
 .page-buttons{
     text-align: center;
 }
+
 
