@@ -1,4 +1,5 @@
 startPixabay();
+
 function startPixabay(){
 
     //remove template
@@ -8,57 +9,93 @@ function startPixabay(){
     //selectors
     let input = document.querySelector('.search-box');
     let query = document.querySelector('.text-search');
-    const colorOption = document.querySelector('.color');
-    const next = document.querySelector('.next-page');
-    const previous = document.querySelector('.previous-page');
-
+    let colorOption = document.querySelector('.color');
+    let next = document.querySelector('.next-page');
+    let previous = document.querySelector('.previous-page');
+ 
     //buttons false before search
     next.disabled = true; 
     previous.disabled = true;
 
     //variables for search
-    //let  = 0;
-    const page = 1;
-    let pageCount = 0; 
+    let page = 0; //use for counting pages 
+    let pageCount = 0; //count next page
+    let totPages = 0;
+    let whatPageOn = 0;
     let color = ""; 
     let searchInput = "";
 
     // events
-    input.onsubmit = x =>{               
-        x.preventDefault();
-        next.disabled= false;    
-        searchInput = query.value;       
-        if(query.value ===""){
-            alert("You haven't entered any search words");
-            return startPixabay();
-        }        
+    input.addEventListener('submit', (event) =>{
+        
+        event.preventDefault();                            
+        searchInput = query.value;  
         color = colorOption.value;
         pageCount++;
-        let currentP = page + pageCount;
-        getPhotos(query.value, colorOption.value, currentP);
-    }
+        let currentP = page + pageCount;     
 
-    next.onclick = y => {        
+        if(query.value ===""){ 
+            alert("You haven't entered any search words");
+            return;  
+        }        
+        
+        getPhotos(query.value, colorOption.value, currentP);    
+    });
+    
+    input.addEventListener('change', (event) => {       
+        event.preventDefault();
+        next.disabled = true;
+
+        input.onsubmit = x =>{ 
+            clearGallery();         
+            x.preventDefault();  
+            searchInput = query.value;       
+            if(query.value ===""){
+                alert("You haven't entered any search words");
+                return startPixabay();
+            }
+            else{
+                clearGallery();
+                pageCount = 0;
+                color = colorOption.value;
+                pageCount++;
+                let currentP = page + pageCount;
+                console.log(currentP)
+                getPhotos(query.value, colorOption.value, currentP);
+            }            
+        }
+    });
+
+    next.addEventListener('click', (event) => {
+        
+        event.preventDefault();
+        clearGallery();       
         query.value;
         colorOption.value
         pageCount ++;
         let currentP = page + pageCount;
-        if(currentP > 1){
-            previous.disabled= false; 
+        if(currentP != 0) {
+            previous.disabled = false; 
         }
-        if (currentP <= 1){
-            previous.disabled = true;
-        }
-        getPhotos(query.value, colorOption.value, currentP);     
-    }
+        getPhotos(query.value, colorOption.value, currentP);
+        console.log(currentP);
+         
+    });
                 
-    previous.onclick = y => {
+    previous.addEventListener('click', (event) => {
+            clearGallery();
+            event.preventDefault(); 
             query.value;
             colorOption.value
             pageCount --;
-            let currentP = page + pageCount
-            getPhotos(query.value, colorOption.value, currentP);     
-    }
+            let currentP = page + pageCount;
+            if(currentP == 1) {
+
+                previous.disabled = true; 
+            }
+            getPhotos(query.value, colorOption.value, currentP);
+            console.log(currentP);      
+    });
 
     async function getPhotos(searchInput, color, currentP){
 
@@ -72,30 +109,41 @@ function startPixabay(){
                 q: searchInput,
                 image_type: 'photo',
                 colors: color,
-                page: currentP, //page on now
-                per_page: 3, //ÄNDRA TILLBAKA EFTER TEST TILL 10
-                hits: []
+                page: currentP, 
+                per_page: 10
             }
         );    
         let data = await fetch(pixabayPath + params.toString()); 
-        let response = await data.json();   //convert the response to json
-        console.log(response); //comment out this later
-        displayPhotos(response); // call method for result  
-        return response;      
+        let response = await data.json();   
+        let getNoPages = Math.floor(response.totalHits/10);
+        totPages = getNoPages;
+        whatPageOn = currentP;
+        console.log(totPages); //comment out this later
+        console.log(response.totalHits); //comment out this later
+        if(response.totalHits === 0){
+            alert("We couldn't find what you're looking for.");
+            return;  
+        }        
+        else{
+            displayPhotos(response);
+        }
+ 
+        return totPages;      
     }    
 
     function displayPhotos(response){
 
-            if(response.totalHits === 0){
+        if(totPages != 0 && totPages >= whatPageOn){
+           next.disabled = false;
+        }
+        else{
+            next.disabled = true;
+        }
 
-                document.querySelector('.gallery-container').innerHTML = "Sorry, no results were found.";  
-                return startPixabay();              
-            }
-            
-            let pixList = document.querySelector('#pix-list');
-            //let pixTemplate = document.querySelector('#pix-template');
-            //pixTemplate.remove();
-            for (let i = 0; i < response.hits.length; i++) {
+        let pixList = document.querySelector('#pix-list');        
+        let l = response.hits.length;
+        
+            for (let i = 0; i < l; i++) {
                 let pixLi = pixTemplate.content.firstElementChild.cloneNode(true);
                 let imgUrl = response.hits[i].largeImageURL;
                 pixLi.querySelector('.display-photo').src = imgUrl;
@@ -106,14 +154,16 @@ function startPixabay(){
                 let userText= "Photo taken by: ";
                 pixLi.querySelector('.user').textContent = userText + photographer;
                 pixList.append(pixLi);
-            }
-        }
-
+            } 
+    }
+    
+    //Function remove li items (img, tags, photographer)   
     function clearGallery(){
         let pixList = document.querySelector('#pix-list');
         let pixLi = pixList.querySelectorAll('li')
-        for (const pix of pixLi){
-            pixList.remove(pix);
+        for (let pix of pixLi){
+            pix.remove(pixList);
         }
     }
+
 }
