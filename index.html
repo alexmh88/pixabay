@@ -7,6 +7,8 @@
   <title>Pixabay Image Search</title>
   <script src="script.js" defer></script>
   <link rel="stylesheet" href="stylesheet.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
     <body>
     <header>
@@ -32,7 +34,9 @@
                 <option value="black">Black</option>
                 <option value="brown">Brown</option>
             </select>
-            <button type="submit" class="search-button">Search</button>
+            <button type="submit" class="search-button">
+                <span class="material-icons">search</span>
+            </button>
         </form>
         <section class="gallery-container" id="pix">
             <ul id="pix-list">
@@ -51,7 +55,7 @@
             </div>
     </main>
     <footer>
-        <small>Photo Image Search by Alex & Simon 2022</small>
+        <small class="creator">Photo Image Search by Alex & Simon 2022</small>
     </footer>        
     </body> 
 </html>  

@@ -1,19 +1,22 @@
 header{
-    text-align: center;
+    display: flex;
+    position: static;
+    justify-content: center ;
     color: rgb(179, 89, 89);
 }
 
 .search-box{
-    position: relative;
-    display: inline-flex;
-    width: 100%;
-    max-width: 200px;
+    display: flex;
+    position: static;
+    justify-content: center;
 }
 
 .text-search{
     flex-grow: 1;
     padding: 10px;
     outline: none;
+    display: flex;
+    max-width: fit-content;
     border: 1px solid rgb(179, 89, 89);
     border-radius: 5px 0 0 5px;
     background: rgb(240, 223, 224);
@@ -29,14 +32,20 @@ header{
     flex-grow: 1;
     padding: 10px;
     outline: none;
+    max-width: fit-content;
     border: 1px solid rgb(179, 89, 89);
     border-radius: 0px;
     background: rgb(240, 223, 224);
     transition: background 0.25s, box-shadow 25s;
 }
 
+.color:hover{
+    background: white;
+    box-shadow: 0 0 2px rgb(189, 133, 139);
+}
+
 .search-button{
-    width: 40px;
+    width: 50px;
     background: rgb(179, 89, 89);
     color: white;
     outline: none;
@@ -50,7 +59,17 @@ header{
 }
 
 .page-buttons{
-    text-align: center;
+    display: flex;
+    position: static;
+    justify-content: center;
 }
 
+.creator{
+    position: static;
+    justify-content: end;
+}
+
+#display-photo{
+    width: 40px;
+}
 
