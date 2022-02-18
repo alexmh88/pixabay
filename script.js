@@ -47,6 +47,8 @@ function startPixabay(){
         next.disabled = true;
 
         input.onsubmit = x =>{ 
+            pageCount = 0;
+            pageCount++;
             clearGallery();         
             x.preventDefault();  
             searchInput = query.value;       
@@ -56,7 +58,7 @@ function startPixabay(){
             }
             else{
                 clearGallery();
-                pageCount = 0;
+                pageCount = 0;                
                 color = colorOption.value;
                 pageCount++;
                 let currentP = page + pageCount;
