@@ -64,6 +64,25 @@ header{
     justify-content: center;
 }
 
+.previous-page{
+    background: rgb(240, 223, 224);
+    border: 1px solid rgb(179, 89, 89);
+    outline: none;
+    align-items: center;
+    max-width: fit-content;
+    border-radius: 5px 5px 5px 5px;
+    padding: 5px;
+}
+
+.next-page{
+    background: rgb(240, 223, 224);
+    border: 1px solid rgb(179, 89, 89);
+    outline: none;
+    align-items: center;
+    max-width: fit-content;
+    border-radius: 5px 5px 5px 5px;
+}
+
 .creator{
     position: static;
     justify-content: end;
