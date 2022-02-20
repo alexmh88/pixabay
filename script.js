@@ -85,7 +85,7 @@ function startPixabay() {
         console.log(currentP);
     });
 
-    async function getPhotos(searchInput, color, currentP){
+    async function getPhotos(searchInput, color, currentP) {
         const pixabayApiKey = '25606330-787c5313477323740e4102695';
         const pixabayPath = 'https://pixabay.com/api/?';
         let params = new URLSearchParams(
