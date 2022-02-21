@@ -35,7 +35,6 @@ function startPixabay() {
         if (query.value === "") {
             alert("You haven't entered any search words");
         } else {
-            console.log(whatPageOn);
             getPhotos(query.value, colorOption.value, whatPageOn);
             searchButton.disabled = true;
         }
@@ -67,8 +66,6 @@ function startPixabay() {
             previous.disabled = false;
         }
         getPhotos(query.value, colorOption.value, whatPageOn);
-        console.log(whatPageOn);
-
     });
 
     previous.addEventListener('click', (event) => {
@@ -83,7 +80,6 @@ function startPixabay() {
             previous.disabled = true;
         }
         getPhotos(query.value, colorOption.value, whatPageOn);
-        console.log(whatPageOn);
     });
 
     async function getPhotos(searchInput, color, whatPageOn) {
@@ -104,9 +100,6 @@ function startPixabay() {
         let response = await data.json();
         let getNoPages = Math.floor(response.totalHits / 10);
         totPages = getNoPages;
-
-        console.log(totPages); //comment out this later
-        console.log(response.totalHits); //comment out this later
 
         if (response.totalHits == 0) {
             alert("We couldn't find what you're looking for.");
